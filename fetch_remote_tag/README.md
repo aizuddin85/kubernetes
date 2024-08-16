@@ -1,5 +1,5 @@
 1. This script use "skopeo" binary, please install it first. https://github.com/containers/skopeo/blob/main/install.md
-2. run #> python3 remote-tag-fetch.py
+2. run #> python3 fetch-remote-tag.py  
 
 Fetching tags for ingress-nginx/controller from registry.k8s.io...  
 Latest 8 tags for ingress-nginx/controller:  
