@@ -1,0 +1,9 @@
+registries:
+  - registry: registry.k8s.io
+    images:
+      - ingress-nginx/controller
+  - registry: docker.io
+    images:
+      - velero/velero
+      - cloudability/metrics-agent
+max: 8
