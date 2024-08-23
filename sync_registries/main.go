@@ -75,7 +75,6 @@ func main() {
 			}
 			secret.Username = "oauth2accesstoken"
 			secret.Password = token
-			log.Printf(token)
 		}
 
 		if err := syncRegistry(registry, secret.Username, secret.Password); err != nil {
