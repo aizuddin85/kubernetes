@@ -1,0 +1,52 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: example-applicationset
+spec:
+  generators:
+    - cluster:
+        selector:
+          matchLabels:
+            environment: production
+  template:
+    metadata:
+      name: '{{name}}-app'
+    spec:
+      project: default
+      source:
+        repoURL: <REPO_URL>
+        targetRevision: main
+        chart: <CHART_NAME>
+        helm:
+          values: |
+            global:
+              env: production
+      destination:
+        server: '{{server}}'
+        namespace: '{{name}}-namespace'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+  overrideValues:
+    - clusterSelector:
+        matchNames:
+          - clusterA
+      values:
+        # Helm values specific to clusterA
+        replicas: 2
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+    - clusterSelector:
+        matchNames:
+          - clusterB
+      values:
+        # Helm values specific to clusterB
+        replicas: 3
+        resources:
+          limits:
+            cpu: 200m
+            memory: 256Mi
+
