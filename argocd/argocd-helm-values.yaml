@@ -1,0 +1,16 @@
+USER-SUPPLIED VALUES:
+installCRDs: true
+configs:
+  rbac:
+    policy.csv: |
+      g, argocd-admin, role:admin
+server:
+  ingress:
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt
+      nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+      nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    enabled: true
+    hostname: argocd.apps.k8s.aizuddinzali.com
+    ingressClassName: nginx
+    tls: true
